@@ -49,6 +49,7 @@ function LogIn() {
         email,
         password,
       });
+      console.log(res);
       const token = res.data.token;
       const { name, role } = jwt(token);
 
@@ -65,7 +66,6 @@ function LogIn() {
       setLoginError(err.response.data.error);
     }
   };
-  console.log(location);
   if (!location.state) {
     history.push("/");
     return null;

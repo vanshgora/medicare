@@ -22,10 +22,13 @@ const Login = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json({ error: "User not found" });
   }
 
+  console.log(password, user)
+
   const isCorrect = await user.checkPassword(password);
 
   if (isCorrect) {
-    const token = user.generateAuthToken();
+    const token = await user.generateAuthToken();
+    console.log(token);
     res.status(StatusCodes.OK).json({ token });
   } else {
     res.status(StatusCodes.UNAUTHORIZED).json({ error: "Incorrect password" });
